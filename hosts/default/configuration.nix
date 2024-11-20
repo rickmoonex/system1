@@ -1,19 +1,17 @@
 { config, lib, pkgs, inputs, options, ... }:
 
 let
-  username = "vasu";
-  userDescription = "Vasu Jain";
+  username = "rick";
+  userDescription = "Rick Moonen";
   homeDirectory = "/home/${username}";
-  hostName = "rudra";
-  timeZone = "Asia/Kolkata";
+  hostName = "system1";
+  timeZone = "Europe/Amsterdam";
 in
 {
   imports =
     [
       ./hardware-configuration.nix
       ./user.nix
-      ../../modules/nvidia-drivers.nix
-      ../../modules/nvidia-prime-drivers.nix
       ../../modules/intel-drivers.nix
       inputs.home-manager.nixosModules.default
     ];
@@ -67,15 +65,15 @@ in
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
-      LC_ADDRESS = "en_US.UTF-8";
-      LC_IDENTIFICATION = "en_US.UTF-8";
-      LC_MEASUREMENT = "en_US.UTF-8";
-      LC_MONETARY = "en_US.UTF-8";
-      LC_NAME = "en_US.UTF-8";
-      LC_NUMERIC = "en_US.UTF-8";
-      LC_PAPER = "en_US.UTF-8";
-      LC_TELEPHONE = "en_US.UTF-8";
-      LC_TIME = "en_US.UTF-8";
+      LC_ADDRESS = "nl_NL.UTF-8";
+      LC_IDENTIFICATION = "nl_NL.UTF-8";
+      LC_MEASUREMENT = "nl_NL.UTF-8";
+      LC_MONETARY = "nl_NL.UTF-8";
+      LC_NAME = "nl_NL.UTF-8";
+      LC_NUMERIC = "nl_NL.UTF-8";
+      LC_PAPER = "nl_NL.UTF-8";
+      LC_TELEPHONE = "nl_NL.UTF-8";
+      LC_TIME = "nl_NL.UTF-8";
     };
   };
 
@@ -247,7 +245,7 @@ environment.systemPackages = with pkgs; [
   networkmanagerapplet
 
   # Education
-  ciscoPacketTracer8 wireshark ventoy
+  wireshark ventoy
 
   # Music and streaming
   youtube-music spotify
@@ -304,17 +302,9 @@ environment.systemPackages = with pkgs; [
     };
     cloudflare-warp.enable = true;
     supergfxd.enable = true;
-    asusd = {
-      enable = true;
-      enableUserService = true;
-    };
     tailscale = {
       enable = true;
       useRoutingFeatures = "client";
-    };
-    ollama = {
-      enable=true;
-      acceleration = "cuda";
     };
     cron = {
       enable=true;
