@@ -1,6 +1,3 @@
-let
-  username = "rick";
-in
 {
   description = "Rudra flake";
 
@@ -12,7 +9,7 @@ in
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixCats = {
-      url = "path:/home/${username}/system1/modules/nixCats";
+      url = "path:/home/rick/system1/modules/nixCats";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     zen-browser.url = "github:MarceColl/zen-browser-flake";
