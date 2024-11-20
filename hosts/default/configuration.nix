@@ -17,6 +17,7 @@ in
     ];
 
   boot = {
+    kernelParams = [ "snd-intel-dspcfg.dsp_driver=1" ];
     kernelPackages = pkgs.linuxPackages_zen;
     kernelModules = [ "v4l2loopback" ];
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
