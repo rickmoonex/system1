@@ -186,13 +186,13 @@
         ]
       },
       "locked": {
-        "lastModified": 1,
+        "lastModified": 1732120121,
         "narHash": "sha256-hzy6jpOW+mu+PrunRglJPFFLmyvaSG0ganrFUAKnLgs=",
-        "path": "./modules/nixCats",
+        "path": "/home/rick/system1/modules/nixCats",
         "type": "path"
       },
       "original": {
-        "path": "./modules/nixCats",
+        "path": "/home/rick/system1/modules/nixCats",
         "type": "path"
       }
     },
