@@ -1,4 +1,11 @@
-{ config, lib, pkgs, inputs, options, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  options,
+  ...
+}:
 
 let
   username = "rick";
@@ -8,13 +15,13 @@ let
   timeZone = "Europe/Amsterdam";
 in
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ./user.nix
-      ../../modules/intel-drivers.nix
-      inputs.home-manager.nixosModules.default
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    ./user.nix
+    ../../modules/intel-drivers.nix
+    inputs.home-manager.nixosModules.default
+    inputs.spicetify-nix.nixosModules.default
+  ];
 
   boot = {
     kernelParams = [ "snd-intel-dspcfg.dsp_driver=1" ];
@@ -56,8 +63,18 @@ in
     networkmanager.enable = true;
     timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
     firewall = {
-      allowedTCPPortRanges = [ { from = 8060; to = 8090; } ];
-      allowedUDPPortRanges = [ { from = 8060; to = 8090; } ];
+      allowedTCPPortRanges = [
+        {
+          from = 8060;
+          to = 8090;
+        }
+      ];
+      allowedUDPPortRanges = [
+        {
+          from = 8060;
+          to = 8090;
+        }
+      ];
     };
   };
 
@@ -151,6 +168,18 @@ in
         thunar-volman
       ];
     };
+    spicetify =
+      let
+        spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+      in
+      {
+        enable = true;
+        enabledExtensions = with spicePkgs.extensions; [
+          adblock
+        ];
+        theme = spicePkgs.themes.catppuccin;
+        colorScheme = "mocha";
+      };
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -160,7 +189,10 @@ in
     users.${username} = {
       isNormalUser = true;
       description = userDescription;
-      extraGroups = [ "networkmanager" "wheel" ];
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+      ];
       packages = with pkgs; [
         firefox
         thunderbird
@@ -168,92 +200,201 @@ in
     };
   };
 
-environment.systemPackages = with pkgs; [
-  # Text editors and IDEs
-  vim neovim vscode zed-editor  neovide jetbrains.idea-ultimate
-  
+  environment.systemPackages = with pkgs; [
+    # Text editors and IDEs
+    vim
+    neovim
+    vscode
+    zed-editor
+    neovide
+    jetbrains.idea-ultimate
+
     # jetbrains.idea-community-bin
-  
+
     # Zen Browser from custom input
-  inputs.zen-browser.packages."${system}".default
+    inputs.zen-browser.packages."${system}".default
 
-  # Programming languages and tools
-  go lua python3 python3Packages.pip uv clang zig rustup
-  nodePackages_latest.pnpm nodePackages_latest.yarn nodePackages_latest.nodejs
-  bun jdk maven gcc 
+    # Programming languages and tools
+    go
+    lua
+    python3
+    python3Packages.pip
+    uv
+    clang
+    zig
+    rustup
+    nodePackages_latest.pnpm
+    nodePackages_latest.yarn
+    nodePackages_latest.nodejs
+    bun
+    jdk
+    maven
+    gcc
 
-  # Frappe Bench
-  redis wkhtmltopdf nginx uv mariadb
+    # Frappe Bench
+    redis
+    wkhtmltopdf
+    nginx
+    uv
+    mariadb
 
-  # Version control and development tools
-  git gh lazygit lazydocker bruno gnumake coreutils nixfmt-rfc-style meson ninja
+    # Version control and development tools
+    git
+    gh
+    lazygit
+    lazydocker
+    bruno
+    gnumake
+    coreutils
+    nixfmt-rfc-style
+    meson
+    ninja
 
-  # Shell and terminal utilities
-  stow wget killall eza starship kitty zoxide fzf tmux progress tree alacritty
-  inputs.nixCats.packages.${pkgs.system}.nixCats
+    # Shell and terminal utilities
+    stow
+    wget
+    killall
+    eza
+    starship
+    kitty
+    zoxide
+    fzf
+    tmux
+    progress
+    tree
+    alacritty
+    inputs.nixCats.packages.${pkgs.system}.nixCats
 
-  # File management and archives
-  yazi p7zip unzip unrar file-roller ncdu duf
+    # File management and archives
+    yazi
+    p7zip
+    unzip
+    unrar
+    file-roller
+    ncdu
+    duf
 
-  # System monitoring and management
-  htop btop lm_sensors inxi auto-cpufreq nvtopPackages.nvidia
+    # System monitoring and management
+    htop
+    btop
+    lm_sensors
+    inxi
+    auto-cpufreq
+    nvtopPackages.nvidia
 
-  # Network and internet tools
-  aria2 qbittorrent cloudflare-warp tailscale onedrive
+    # Network and internet tools
+    aria2
+    qbittorrent
+    cloudflare-warp
+    tailscale
+    onedrive
 
-  # Audio and video
-  pulseaudio pavucontrol ffmpeg mpv deadbeef-with-plugins
+    # Audio and video
+    pulseaudio
+    pavucontrol
+    ffmpeg
+    mpv
+    deadbeef-with-plugins
 
-  # Image and graphics
-  imagemagick gimp hyprpicker swww hyprlock waypaper imv
+    # Image and graphics
+    imagemagick
+    gimp
+    hyprpicker
+    swww
+    hyprlock
+    waypaper
+    imv
 
-  # Productivity and office
-  obsidian onlyoffice-bin libreoffice-qt6-fresh spacedrive hugo teams-for-linux
+    # Productivity and office
+    obsidian
+    onlyoffice-bin
+    libreoffice-qt6-fresh
+    spacedrive
+    hugo
+    teams-for-linux
 
-  # Communication and social
-  telegram-desktop zoom-us vesktop element-desktop
+    # Communication and social
+    telegram-desktop
+    zoom-us
+    vesktop
+    element-desktop
 
-  # Browsers
-  firefox google-chrome
+    # Browsers
+    firefox
+    google-chrome
 
-  # Gaming and entertainment
-  stremio
+    # Gaming and entertainment
+    stremio
 
-  # System utilities
-  libgcc bc kdePackages.dolphin lxqt.lxqt-policykit libnotify v4l-utils ydotool
-  pciutils socat cowsay ripgrep lshw bat pkg-config brightnessctl virt-viewer
-  swappy appimage-run yad playerctl nh ansible
+    # System utilities
+    libgcc
+    bc
+    kdePackages.dolphin
+    lxqt.lxqt-policykit
+    libnotify
+    v4l-utils
+    ydotool
+    pciutils
+    socat
+    cowsay
+    ripgrep
+    lshw
+    bat
+    pkg-config
+    brightnessctl
+    virt-viewer
+    swappy
+    appimage-run
+    yad
+    playerctl
+    nh
+    ansible
 
-  # Wayland specific
-  hyprshot hypridle grim slurp waybar dunst wl-clipboard swaynotificationcenter
+    # Wayland specific
+    hyprshot
+    hypridle
+    grim
+    slurp
+    waybar
+    dunst
+    wl-clipboard
+    swaynotificationcenter
 
-  # Virtualization
-  libvirt
+    # Virtualization
+    libvirt
 
-  # File systems
-  ntfs3g os-prober
+    # File systems
+    ntfs3g
+    os-prober
 
-  # Downloaders
-  yt-dlp localsend
+    # Downloaders
+    yt-dlp
+    localsend
 
-  # Clipboard managers
-  cliphist
+    # Clipboard managers
+    cliphist
 
-  # Fun and customization
-  cmatrix lolcat fastfetch onefetch microfetch
+    # Fun and customization
+    cmatrix
+    lolcat
+    fastfetch
+    onefetch
+    microfetch
 
-  # Networking
-  networkmanagerapplet
+    # Networking
+    networkmanagerapplet
 
-  # Education
-  wireshark ventoy
+    # Education
+    wireshark
+    ventoy
 
-  # Music and streaming
-  youtube-music spotify
+    # Music and streaming
+    youtube-music
+    spotify
 
-  # Miscellaneous
-  greetd.tuigreet
-];
+    # Miscellaneous
+    greetd.tuigreet
+  ];
 
   fonts.packages = with pkgs; [
     noto-fonts-emoji
@@ -298,8 +439,8 @@ environment.systemPackages = with pkgs; [
     };
     logind = {
       extraConfig = ''
-      HandlePowerKey=suspend
-    '';
+        HandlePowerKey=suspend
+      '';
     };
     cloudflare-warp.enable = true;
     supergfxd.enable = true;
@@ -308,7 +449,7 @@ environment.systemPackages = with pkgs; [
       useRoutingFeatures = "client";
     };
     cron = {
-      enable=true;
+      enable = true;
     };
     libinput.enable = true;
     fstrim.enable = true;
@@ -411,7 +552,10 @@ environment.systemPackages = with pkgs; [
   nix = {
     settings = {
       auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
       substituters = [ "https://hyprland.cachix.org" ];
       trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
     };
@@ -425,7 +569,9 @@ environment.systemPackages = with pkgs; [
   programs.hyprland.enable = true;
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = {
+      inherit inputs;
+    };
     users.${username} = import ./home.nix;
     useGlobalPkgs = true;
     useUserPackages = true;
