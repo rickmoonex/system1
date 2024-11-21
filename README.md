@@ -1,16 +1,6 @@
 <h1 align="center">System1</h2>
 
-> **System1** (Rudra) is the Hindu god my flake is named after, symbolizing transformation and renewal.
-
-<p align="center">
-  <img width="80%" src="https://github.com/user-attachments/assets/f3ef7b27-825f-4bca-bf01-9ff92096f040" />   
-  <img src="https://github.com/user-attachments/assets/47fae1d6-b54b-4801-8c93-6f1d22918049" width="40%" />
-  <img src="https://github.com/user-attachments/assets/b678d830-9a9e-48c0-943c-a5e5ff524e8e" width="40%" />
-  <img src="https://github.com/user-attachments/assets/16f18fbe-81fc-41d1-ad99-e393342d19af" width="40%" />
-  <img src="https://github.com/user-attachments/assets/5ac2d6f9-3102-4281-a8bf-72d35e8d0e6a" width="40%" />
-</p>
-
-> ✨ Inspired from [ZaneyOS](https://gitlab.com/Zaney/zaneyos) 🌟
+> ✨ Very much inspired by [Rudra](https://github.com/vasujain275/rudra) 🌟
 
 ## 🍖 Requirements
 
