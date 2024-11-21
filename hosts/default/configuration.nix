@@ -179,7 +179,6 @@ in
           shuffle
           betterGenres
           savePlaylists
-          oneko
         ];
         theme = lib.mkForce spicePkgs.themes.burntSienna;
       };
