@@ -177,7 +177,7 @@ in
         enabledExtensions = with spicePkgs.extensions; [
           adblock
         ];
-        theme = lib.mkForce spicePkgs.themes.sleek;
+        theme = lib.mkForce spicePkgs.themes.burntSienna;
       };
   };
 
