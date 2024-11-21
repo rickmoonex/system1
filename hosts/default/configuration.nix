@@ -208,7 +208,7 @@ environment.systemPackages = with pkgs; [
   imagemagick gimp hyprpicker swww hyprlock waypaper imv
 
   # Productivity and office
-  obsidian onlyoffice-bin libreoffice-qt6-fresh spacedrive hugo teams
+  obsidian onlyoffice-bin libreoffice-qt6-fresh spacedrive hugo teams-for-linux
 
   # Communication and social
   telegram-desktop zoom-us vesktop element-desktop
