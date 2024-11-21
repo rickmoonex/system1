@@ -98,7 +98,7 @@ in
   stylix = {
     enable = true;
     base16Scheme = {
-      base00 = "e9e0d2";
+      base00 = "191724";
       base01 = "1f1d2e";
       base02 = "26233a";
       base03 = "6e6a86";
