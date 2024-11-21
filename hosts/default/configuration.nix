@@ -176,6 +176,7 @@ in
         enable = true;
         enabledExtensions = with spicePkgs.extensions; [
           adblock
+          shuffle
         ];
         theme = lib.mkForce spicePkgs.themes.burntSienna;
       };
