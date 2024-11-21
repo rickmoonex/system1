@@ -178,7 +178,7 @@ in
           adblock
         ];
         theme = lib.mkForce spicePkgs.themes.catppuccin;
-        colorScheme = "mocha";
+        colorScheme = lib.mkForce "mocha";
       };
   };
 
