@@ -177,6 +177,9 @@ in
         enabledExtensions = with spicePkgs.extensions; [
           adblock
           shuffle
+          betterGenres
+          savePlaylists
+          oneko
         ];
         theme = lib.mkForce spicePkgs.themes.burntSienna;
       };
