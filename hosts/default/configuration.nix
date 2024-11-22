@@ -402,7 +402,7 @@ in
     noto-fonts-emoji
     fira-sans
     roboto
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     font-awesome
     material-icons
   ];
