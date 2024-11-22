@@ -156,7 +156,7 @@ return {
         'sqlfmt',
         'sqlls',
         'delve',
-        'tsserver',
+        'ts_ls',
         'html',
         'cssls',
         'tailwindcss',
