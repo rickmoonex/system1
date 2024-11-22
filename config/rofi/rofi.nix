@@ -25,7 +25,7 @@
             bg = lib.mkForce (mkLiteral "#${config.stylix.base16Scheme.base00}");
             bg-alt = lib.mkForce (mkLiteral "#${config.stylix.base16Scheme.base09}");
             foreground = lib.mkForce (mkLiteral "#${config.stylix.base16Scheme.base01}");
-            selected = lib.mkForce (mkLiteral "#${config.stylix.base16Scheme.base08}");
+            selected = lib.mkForce (mkLiteral "#${config.stylix.base16Scheme.base04}");
             active = lib.mkForce (mkLiteral "#${config.stylix.base16Scheme.base0B}");
             text-selected = lib.mkForce (mkLiteral "#${config.stylix.base16Scheme.base00}");
             text-color = lib.mkForce (mkLiteral "#${config.stylix.base16Scheme.base05}");
