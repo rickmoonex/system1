@@ -11,6 +11,7 @@
     nixCats = {
       url = "path:/home/rick/system1/modules/nixCats";
       inputs.nixpkgs.follows = "nixpkgs";
+      locked = false;
     };
     zen-browser.url = "github:MarceColl/zen-browser-flake";
     spicetify-nix = {
