@@ -265,7 +265,7 @@ in
     progress
     tree
     alacritty
-    inputs.nixCats.packages.${pkgs.system}.nixCats
+    # inputs.nixCats.packages.${pkgs.system}.nixCats
 
     # File management and archives
     yazi

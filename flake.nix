@@ -8,10 +8,10 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixCats = {
-      url = "path:/home/rick/system1/modules/nixCats";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nixCats = {
+    #   url = "path:/home/rick/system1/modules/nixCats";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
     zen-browser.url = "github:MarceColl/zen-browser-flake";
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
@@ -26,11 +26,11 @@
         ./hosts/default/configuration.nix
         inputs.stylix.nixosModules.stylix
         inputs.home-manager.nixosModules.default
-        ({ pkgs, ... }: {
-          environment.systemPackages = [
-            nixCats.packages.${pkgs.system}.nixCats
-          ];
-        })
+        # ({ pkgs, ... }: {
+        #   environment.systemPackages = [
+        #     nixCats.packages.${pkgs.system}.nixCats
+        #   ];
+        # })
       ];
     };
   };
