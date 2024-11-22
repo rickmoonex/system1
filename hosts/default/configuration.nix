@@ -267,6 +267,29 @@ in
     alacritty
     # inputs.nixCats.packages.${pkgs.system}.nixCats
 
+    # LSP
+    stdenv.cc.cc
+    gopls
+    luajitPackages.lua-lsp
+    yaml-language-server
+    clang-tools
+    lua-language-server
+    rust-analyzer
+    nodePackages.typescript-language-server
+    nodePackages.vscode-langservers-extracted # for html, cssls, etc.
+    nodePackages.svelte-language-server
+    nodePackages.graphql-language-service-cli
+    nodePackages."@tailwindcss/language-server"
+    pyright
+    nodePackages.prettier
+    stylua
+    isort
+    black
+    pylint
+    nodePackages.eslint
+    emmet-ls
+    nodePackages."@prisma/language-server"
+
     # File management and archives
     yazi
     p7zip
