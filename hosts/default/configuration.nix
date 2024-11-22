@@ -310,7 +310,6 @@ in
     # Productivity and office
     obsidian
     onlyoffice-bin
-    libreoffice-qt6-fresh
     spacedrive
     hugo
     teams-for-linux
