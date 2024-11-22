@@ -22,8 +22,8 @@ window#waybar {
 #network,
 #custom-right,
 #custom-left {
-  color: #e0def4; /* Rose Pine Moon - Text */
-  background: #232136; /* Rose Pine Moon - Base */
+  color: #e0ccae; /* Rose Pine Moon - Text */
+  background: #0f0908; /* Rose Pine Moon - Base */
   margin: 4px 0px 4px 0px;
   opacity: 1;
   border: 0px solid #181825;
