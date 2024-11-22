@@ -1,9 +1,17 @@
--- NOTE:
--- list of nix installed plugins lazy should look for rather than download
--- can be grabbed straight from require('nixCats').pawsible.allPlugins.{ start, opt }
-local pluginList = {}
-local lazypath = nil -- require('nixCats').pawsible.allPlugins.start["lazy.nvim"]
-require('nixCatsUtils.lazyCat').setup(pluginList, lazypath,{ { import = 'vj.plugins' } }, {
+local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system {
+    'git',
+    'clone',
+    '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git',
+    '--branch=stable', -- latest stable release
+    lazypath,
+  }
+end
+vim.opt.rtp:prepend(lazypath)
+
+require('lazy').setup({ { import = 'vj.plugins' } }, {
   checker = {
     enabled = true,
     notify = false,
@@ -11,5 +19,5 @@ require('nixCatsUtils.lazyCat').setup(pluginList, lazypath,{ { import = 'vj.plug
   change_detection = {
     notify = false,
   },
-  lockfile = "~/lazy-lock.json",
+  lockfile = "~/lazy-lock.json"
 })
