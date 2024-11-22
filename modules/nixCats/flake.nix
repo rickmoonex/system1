@@ -107,6 +107,10 @@
           py.python-lsp-black
         ]);
       };
+
+      extraLuaPackages = {
+        general = [ (_:[]) ];
+      };
     };
 
     packageDefinitions = {
