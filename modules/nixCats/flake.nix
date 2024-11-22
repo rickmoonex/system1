@@ -107,9 +107,6 @@
           py.python-lsp-black
         ]);
       };
-      extraLuaPackages = {
-        test = [ (_:[]) ];
-      };
     };
 
     packageDefinitions = {
