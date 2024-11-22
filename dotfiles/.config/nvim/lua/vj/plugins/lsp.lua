@@ -1,5 +1,5 @@
 return {
-  { -- LSP Configuration & Plugins
+  { -- LSP Configuration & Pluginslsp
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for neovim
@@ -7,18 +7,6 @@ return {
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
-      {
-        'folke/lazydev.nvim',
-        ft = 'lua', -- only load on lua files
-        opts = {
-          library = {
-            -- See the configuration section for more details
-            -- Load luvit types when the `vim.uv` word is found
-            -- { path = "luvit-meta/library", words = { "vim%.uv" } },
-            { path = require('nixCats').nixCatsPath .. '/lua', words = { 'nixCats' } },
-          },
-        },
-      },
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim', opts = {} },
@@ -100,7 +88,6 @@ return {
       --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
-
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
       --
@@ -111,20 +98,19 @@ return {
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        gopls = {},
-        yamlls = {},
         clangd = {},
         rust_analyzer = {},
-        ts_ls = {},
-        html = {},
-        cssls = {},
-        jsonls = {},
-        svelte = {},
-        graphql = {},
-        tailwindcss = {},
-        pyright = {},
-        emmet_ls = {},
-        prismals = {},
+        gopls = {
+          settings = {
+            completeUnimported = true,
+            usePlaceholders = true,
+            analyses = {
+              unusedparams = true,
+            },
+          },
+        },
+        sqlls = {},
+        tsserver = {},
         lua_ls = {
           -- cmd = {...},
           -- filetypes { ...},
@@ -137,17 +123,14 @@ return {
                 -- Tells lua_ls where to find all the Lua files that you have loaded
                 -- for your neovim configuration.
                 library = {
-                  -- lazydev takes care of this
-                  -- '${3rd}/luv/library',
-                  -- unpack(vim.api.nvim_get_runtime_file('', true)),
+                  '${3rd}/luv/library',
+                  unpack(vim.api.nvim_get_runtime_file('', true)),
                 },
                 -- If lua_ls is really slow on your computer, you can try this instead:
                 -- library = { vim.env.VIMRUNTIME },
               },
-              diagnostics = {
-                globals = { 'nixCats', 'vim' },
-                -- disable = { 'missing-fields' },
-              },
+              -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+              -- diagnostics = { disable = { 'missing-fields' } },
             },
           },
         },
@@ -159,63 +142,61 @@ return {
       --    :Mason
       --
       --  You can press `g?` for help in this menu
-      if require('nixCatsUtils').isNixCats then
-        for server_name, server in pairs(servers) do
-          require('lspconfig')[server_name].setup {
-            capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {}),
-            settings = servers[server_name],
-            filetypes = (servers[server_name] or {}).filetypes,
-            cmd = (servers[server_name] or {}).cmd,
-            root_pattern = (servers[server_name] or {}).root_pattern,
-          }
-        end
-      else
-        require('mason').setup()
+      require('mason').setup()
 
-        -- You can add other tools here that you want Mason to install
-        -- for you, so that they are available from within Neovim.
-        local ensure_installed = vim.tbl_keys(servers or {})
-        vim.list_extend(ensure_installed, {
-          'clangd',
-          'lua_ls',
-          'rust_analyzer',
-          'biome',
-          'tsserver',
-          'html',
-          'cssls',
-          'tailwindcss',
-          'svelte',
-          'lua_ls',
-          'graphql',
-          'emmet_ls',
-          'prismals',
-          'pyright',
-          'prettier', -- prettier formatter
-          'stylua', -- lua formatter
-          'isort', -- python formatter
-          'black', -- python formatter
-          'pylint',
-          'eslint',
-        })
-        require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+      -- You can add other tools here that you want Mason to install
+      -- for you, so that they are available from within Neovim.
+      local ensure_installed = vim.tbl_keys(servers or {})
+      vim.list_extend(ensure_installed, {
+        'clangd',
+        'lua_ls',
+        'rust_analyzer',
+        -- 'biome',
+        'gopls',
+        'sqlfmt',
+        'sqlls',
+        'delve',
+        'tsserver',
+        'html',
+        'cssls',
+        'tailwindcss',
+        'svelte',
+        'lua_ls',
+        'graphql',
+        'emmet_ls',
+        'prismals',
+        'pyright',
+        'prettier', -- prettier formatter
+        'stylua', -- lua formatter
+        'isort', -- python formatter
+        'black', -- python formatter
+        'pylint',
+        'eslint',
+        'java-test',
+        'java-debug-adapter',
+      })
+      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
-        require('mason-lspconfig').setup {
-          handlers = {
-            function(server_name)
-              local server = servers[server_name] or {}
-              require('lspconfig')[server_name].setup {
-                cmd = server.cmd,
-                settings = server.settings,
-                filetypes = server.filetypes,
-                -- This handles overriding only values explicitly passed
-                -- by the server configuration above. Useful when disabling
-                -- certain features of an LSP (for example, turning off formatting for tsserver)
-                capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {}),
-              }
-            end,
-          },
-        }
-      end
+      require('mason-lspconfig').setup {
+        handlers = {
+          function(server_name)
+            if server_name == 'jdtls' then
+              return -- Skip setup for jdtls
+            end
+
+            local server = servers[server_name] or {}
+            require('lspconfig')[server_name].setup {
+              cmd = server.cmd,
+              settings = server.settings,
+              filetypes = server.filetypes,
+              -- This handles overriding only values explicitly passed
+              -- by the server configuration above. Useful when disabling
+              -- certain features of an LSP (for example, turning off formatting for tsserver)
+              capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {}),
+            }
+          end,
+        },
+      }
     end,
   },
 }
