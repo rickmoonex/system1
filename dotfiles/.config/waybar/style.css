@@ -47,14 +47,14 @@ tooltip {
   margin-bottom: 3px;
   padding-left: 3px;
   padding-right: 3px;
-  color: #e0def4; /* Rose Pine Moon - Text */
+  color: #e0ccae; /* Rose Pine Moon - Text */
   animation: gradient_f 20s ease-in infinite;
   transition: all 0.5s cubic-bezier(0.55, -0.68, 0.48, 1.682);
 }
 
 #workspaces button.active {
-  background: #393552; /* Rose Pine Moon - Overlay */
-  color: #c4a7e7; /* Rose Pine Moon - Iris */
+  background: #bf472c; /* Rose Pine Moon - Overlay */
+  color: #e0ccae; /* Rose Pine Moon - Iris */
   margin-left: 3px;
   padding-left: 12px;
   padding-right: 12px;
