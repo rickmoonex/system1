@@ -23,6 +23,7 @@
   inputs = {
     nixCats.url = "github:BirdeeHub/nixCats-nvim";
     nixCats.inputs.nixpkgs.follows = "nixpkgs";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs = { self, nixpkgs, nixCats, ... }@inputs: let
@@ -118,6 +119,7 @@
         settings = {
           wrapRc = true;
           aliases = [ "vim" ];
+          neovim-unwrapped = inputs.neovim-nightly-overlay.packages.${pkgs.system}.neovim;
         };
         categories = {
           general = true;
