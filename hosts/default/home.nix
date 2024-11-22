@@ -37,6 +37,7 @@ in
       ".config/waybar".source = ../../dotfiles/.config/waybar;
       ".config/yazi".source = ../../dotfiles/.config/yazi;
       ".config/wezterm".source = ../../dotfiles/.config/wezterm;
+      ".config/nvim".source = ../../dotfiles/.config/nvim;
       
       # Individual config files
       ".config/kwalletrc".source = ../../dotfiles/.config/kwalletrc;
