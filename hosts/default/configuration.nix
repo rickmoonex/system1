@@ -336,6 +336,7 @@ in
     spacedrive
     hugo
     teams-for-linux
+    notion-app-enhanced
 
     # Communication and social
     telegram-desktop
