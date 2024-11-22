@@ -3,9 +3,9 @@ return {
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for neovim
-      { 'williamboman/mason.nvim', enabled = require('nixCatsUtils').lazyAdd(true, false) },
-      { 'williamboman/mason-lspconfig.nvim', enabled = require('nixCatsUtils').lazyAdd(true, false) },
-      { 'WhoIsSethDaniel/mason-tool-installer.nvim', enabled = require('nixCatsUtils').lazyAdd(true, false) },
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+      'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       {
         'folke/lazydev.nvim',
