@@ -30,8 +30,8 @@ window#waybar {
 }
 
 tooltip {
-  background: #232136; /* Rose Pine Moon - Base */
-  color: #e0def4; /* Rose Pine Moon - Text */
+  background: #0f0908; /* Rose Pine Moon - Base */
+  color: #e0ccae; /* Rose Pine Moon - Text */
   border-radius: 22px;
   border-width: 2px;
   border-style: solid;

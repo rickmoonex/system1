@@ -116,7 +116,7 @@ in
       base0F = "f2ddbc";
     };
     image = ../../config/assets/wall.png;
-    polarity = "light";
+    polarity = "dark";
     opacity.terminal = 0.8;
     cursor.package = pkgs.bibata-cursors;
     cursor.name = "Bibata-Modern-Ice";
