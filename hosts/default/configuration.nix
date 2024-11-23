@@ -99,7 +99,7 @@ in
     enable = true;
     base16Scheme = {
       base00 = "0f0908";
-      base01 = "bf472c";
+      base01 = "291916";
       base02 = "a4896f";
       base03 = "f2a766";
       base04 = "d47d49";
