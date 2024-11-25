@@ -465,6 +465,8 @@ in
     logind = {
       extraConfig = ''
         HandlePowerKey=suspend
+        HandleLidSwitch=ignore
+        HandleLidSwitchExternalPower=ignore
       '';
     };
     cloudflare-warp.enable = true;
