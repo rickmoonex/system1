@@ -531,7 +531,7 @@ in
   };
 
   hardware = {
-    opengl.driSupport32Bit = true;
+    graphics.enable32Bit = true;
     sane = {
       enable = true;
       extraBackends = [ pkgs.sane-airscan ];
