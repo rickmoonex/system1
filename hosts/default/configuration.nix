@@ -180,7 +180,7 @@ in
           betterGenres
           savePlaylists
         ];
-        theme = lib.mkForce spicePkgs.themes.burntSienna;
+        theme = lib.mkForce spicePkgs.themes.text;
       };
   };
 
