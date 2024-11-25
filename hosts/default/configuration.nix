@@ -349,7 +349,7 @@ in
     google-chrome
 
     # Gaming and entertainment
-    stremio
+    stremio steam
 
     # System utilities
     libgcc
