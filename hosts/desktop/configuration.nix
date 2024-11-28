@@ -354,7 +354,7 @@ in
     stremio steam
 
     # System utilities
-    gparted
+    gdisk
     libgcc
     bc
     kdePackages.dolphin
