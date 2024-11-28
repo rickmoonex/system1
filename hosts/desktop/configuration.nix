@@ -344,6 +344,7 @@ in
     zoom-us
     vesktop
     element-desktop
+    slack
 
     # Browsers
     firefox
