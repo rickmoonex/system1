@@ -207,11 +207,7 @@ in
     vim
     neovim
     vscode
-    zed-editor
     neovide
-    jetbrains.idea-ultimate
-
-    # jetbrains.idea-community-bin
 
     # Zen Browser from custom input
     inputs.zen-browser.packages."${system}".default
@@ -236,13 +232,6 @@ in
     glibc
     jq
     vault
-
-    # Frappe Bench
-    redis
-    wkhtmltopdf
-    nginx
-    uv
-    mariadb
 
     # Version control and development tools
     git
@@ -313,7 +302,6 @@ in
 
     # Network and internet tools
     aria2
-    qbittorrent
     cloudflare-warp
     tailscale
     onedrive
@@ -327,7 +315,6 @@ in
 
     # Image and graphics
     imagemagick
-    gimp
     hyprpicker
     swww
     hyprlock
@@ -336,7 +323,6 @@ in
 
     # Productivity and office
     obsidian
-    onlyoffice-bin
     spacedrive
     hugo
     teams-for-linux
@@ -344,17 +330,12 @@ in
 
     # Communication and social
     telegram-desktop
-    zoom-us
     vesktop
     element-desktop
     slack
 
     # Browsers
     firefox
-    google-chrome
-
-    # Gaming and entertainment
-    stremio steam
 
     # System utilities
     gptfdisk
@@ -415,12 +396,7 @@ in
     # Networking
     networkmanagerapplet
 
-    # Education
-    wireshark
-    ventoy
-
     # Music and streaming
-    youtube-music
     spotify
 
     # Miscellaneous
