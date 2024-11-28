@@ -232,6 +232,7 @@ in
     jdk
     maven
     gcc
+    glibc
     jq
 
     # Frappe Bench
