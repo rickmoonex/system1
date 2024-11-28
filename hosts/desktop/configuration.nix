@@ -232,6 +232,7 @@ in
     jdk
     maven
     gcc
+    binutils
     glibc
     jq
 
