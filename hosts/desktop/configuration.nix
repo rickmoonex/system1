@@ -231,7 +231,6 @@ in
     binutils
     glibc
     jq
-    vault
 
     # Version control and development tools
     git
