@@ -235,6 +235,7 @@ in
     binutils
     glibc
     jq
+    vault
 
     # Frappe Bench
     redis
