@@ -354,7 +354,7 @@ in
     stremio steam
 
     # System utilities
-    gdisk
+    gptfdisk
     libgcc
     bc
     kdePackages.dolphin
