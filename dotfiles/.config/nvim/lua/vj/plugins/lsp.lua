@@ -152,10 +152,8 @@ return {
         'lua_ls',
         'rust_analyzer',
         -- 'biome',
-        'gopls',
         'sqlfmt',
         'sqlls',
-        'delve',
         'ts_ls',
         'html',
         'cssls',
@@ -200,3 +198,4 @@ return {
     end,
   },
 }
+
