@@ -120,6 +120,22 @@ in
     };
   };
 
+  programs.neovim = {
+    enable = true;
+    extraPackages = with pkgs; [
+      # Formatters
+      gofumpt
+      goimports-reviser
+      golines
+
+      # LSP
+      gopls
+
+      # Tools
+      go
+      gcc
+    ];
+  };
   programs.home-manager.enable = true;
   programs.obs-studio = {
     enable = true;
